@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8" />
     <title>Andy's HTML Lernseite</title>
+<title>Dark Mode Umschalter</title>
+<style>
+  body {
+    background-color: white;
+    color: black;
+    margin: 0;
+    font-family: sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.dark-mode {
+    background-color: #121212;
+    color: #eee;
+  }
+
+  /* Button oben rechts positionieren */
+  #toggleDark {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 0.75rem; /* deutlich kleiner */
+    padding: 4px 8px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  body.dark-mode #toggleDark {
+    background-color: #333;
+    color: #eee;
+  }
+</style>
 </head>
 <body>
+
+<button id="toggleDark">🌓 Dark Mode</button>
+
+<script>
+  const btn = document.getElementById('toggleDark');
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+</script>
+
     <h1>Willkommen auf meiner HTML Lernseite</h1>
+    <p title="clicke rechts oben auf den Button, um den Dark Mode zu aktivieren oder zu deaktivieren."> <span style="color: brown;">Willst du den Dark Mode aktivieren? <= Komm mit dem Maus-Cursor her :)</span></p>
     <br>
     <h2>Grundlagen:</h2>
     <p>Alle HTML-Dokumente müssen mit einer Dokumenttypdeklaration beginnen: <span style="color: red;">&lt;!DOCTYPE html&gt;</span>.
@@ -39,5 +84,8 @@ Mehr über Attribute erfahren Sie in einem späteren Kapitel.</p>
 Als Attribute werden die Quelldatei (<span style="color: red;">src</span>), Alternativtext (<span style="color: red;">alt</span>) <span style="color: red;">width</span>, und <span style="color: red;">height</span> bereitgestellt:</p>
 <br>
 <img src="HTML Bilder.jpg" alt="Bilder" width="500" height="120">
+
+<!-- Schreibe hier dein Feedback zur Website -->
+ 
 </body>
 </html>
