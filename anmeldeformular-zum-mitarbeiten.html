@@ -6,106 +6,159 @@
     <meta name="description" content="Anmeldeformular für die TechConf 2024 - Melden Sie sich jetzt an!">
     <title>TechConf 2025 - Event-Anmeldung</title>
 <style>
-body{
-    background: rgba(245, 241, 245, 0.467);
-    font-family: Arial, Helvetica, sans-serif;
+body {
+    background: #f3f4f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-}
-form{background: #ffff;
-    max-width: 600px;
-    margin: 30px auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #bbb;
-}
-h1{
-    font-size: xx-large;
-    text-align: center;
-    margin-bottom: 0,2em;
-}
-.subtitle{
-    color: #d25b5b;
-    text-align: center;
-    margin-bottom: 1em;
+    color: #111827;
 }
 
-fieldset{
-    border: 02px solid #23587c;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    padding: 16px;
+form {
+    background: #ffffff;
+    max-width: 720px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    padding: 32px;
 }
 
-legend{
+h1 {
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 0.2em;
+    color: #1f2937;
+}
+
+.subtitle {
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+}
+
+fieldset {
+    border: none;
+    border-top: 2px solid #3b82f6;
+    padding-top: 24px;
+    margin-bottom: 36px;
+}
+
+legend {
     font-weight: bold;
-    color: #3498db;
-    padding: 0 8px;
+    color: #2563eb;
+    font-size: 1.2em;
+    margin-bottom: 12px;
 }
-label{
+
+label {
     display: block;
-    margin-top: 12px;
-    margin-bottom: 2px;
-    font-weight: bold;
+    margin-top: 16px;
+    font-weight: 600;
+    font-size: 0.95em;
 }
 
 input,
 select,
-button{
-    display: block;
+button {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
     font-size: 1em;
-    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
-.checkbox-group{
-    display: inline-block;
-    margin-right: 18px;
+input:focus,
+select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 24px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.checkbox-group label {
     font-weight: normal;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
 }
 
-.help-text{
-    font-size: 0,9em;
-    color: #888;
+.workshop-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 16px;
+}
+
+details {
+    margin-top: 20px;
+    background: #f9fafb;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.95em;
+}
+
+.required {
+    color: #dc2626;
+}
+
+.help-text {
+    font-size: 0.875em;
+    color: #6b7280;
     margin-top: -8px;
-    margin-bottom: 6px;
-}
-
-.required{
-    color: red;
-    font-weight: bold;
 }
 
 button[type="submit"] {
-    background: #3498db;
+    background: #3b82f6;
     color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px;
     font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s ease;
 }
 
 button[type="submit"]:hover {
-    background: #00070c;
+    background: #2563eb;
 }
 
 button[type="reset"] {
-  background: #eee;                     
-  color: #333;                         
-  border: 1px solid #ccc;               
-  border-radius: 4px;                   
-  padding: 10px;                        
-  cursor: pointer;                      
+    background: #e5e7eb;
+    color: #374151;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s ease;
+    margin-top: 8px;
 }
 
 button[type="reset"]:hover {
-  background: #ddd;                    
+    background: #d1d5db;
 }
+
+@media (max-width: 600px) {
+    .workshop-grid {
+        flex-direction: column;
+    }
+}
+
+
 </style>
 </head>
 <body>
