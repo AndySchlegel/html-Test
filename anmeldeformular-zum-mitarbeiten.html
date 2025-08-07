@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anmeldeformular für die TechConf 2024 - Melden Sie sich jetzt an!">
+    <title>TechConf 2025 - Event-Anmeldung</title>
+<style>
+body{
+    background: rgba(245, 241, 245, 0.467);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+form{background: #ffff;
+    max-width: 600px;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #bbb;
+}
+h1{
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 0,2em;
+}
+.subtitle{
+    color: #d25b5b;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+fieldset{
+    border: 02px solid #23587c;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 16px;
+}
+
+legend{
+    font-weight: bold;
+    color: #3498db;
+    padding: 0 8px;
+}
+label{
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+input,
+select,
+button{
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.checkbox-group{
+    display: inline-block;
+    margin-right: 18px;
+    font-weight: normal;
+}
+
+.help-text{
+    font-size: 0,9em;
+    color: #888;
+    margin-top: -8px;
+    margin-bottom: 6px;
+}
+
+.required{
+    color: red;
+    font-weight: bold;
+}
+
+button[type="submit"] {
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: #00070c;
+}
+
+button[type="reset"] {
+  background: #eee;                     
+  color: #333;                         
+  border: 1px solid #ccc;               
+  border-radius: 4px;                   
+  padding: 10px;                        
+  cursor: pointer;                      
+}
+
+button[type="reset"]:hover {
+  background: #ddd;                    
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>TechConf 2025</h1>
+        <p class="subtitle">
+            <time datetime="2025-06-15">15. - 17. Juni 2025</time> | Berlin, Deutschland
+        </p>
+    </header>
+
+    <main>
+        <form>
+
+            <!-- Persönliche Daten -->
+            <fieldset>
+                <legend>1. Persönliche Daten</legend>
+                
+                <label for="title">Anrede:</label>
+                <select id="title" name="title" required>
+                    <option value="">Bitte wählen</option>
+                    <option value="herr">Herr</option>
+                    <option value="frau">Frau</option>
+                    <option value="divers">Divers</option>
+                    <option value="keine">Keine Angabe</option>
+                </select>
+                
+                <label for="firstname">
+                    Vorname: <span class="required">*</span>
+                </label>
+                <input type="text" id="firstname" name="firstname" required 
+                       placeholder="Max" autocomplete="given-name">
+                
+                <label for="lastname">
+                    Nachname: <span class="required">*</span>
+                </label>
+                <input type="text" id="lastname" name="lastname" required 
+                       placeholder="Mustermann" autocomplete="family-name">
+                
+                <label for="email">
+                    E-Mail-Adresse: <span class="required">*</span>
+                </label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="max@example.com" autocomplete="email">
+                <p class="help-text">Wir senden Ihre Anmeldebestätigung an diese Adresse</p>
+                
+                <label for="phone">
+                    Telefonnummer: <span class="required">*</span>
+                </label>
+                <input type="tel" id="phone" name="phone" required 
+                       pattern="[0-9+\-\s\(\)]+" 
+                       placeholder="+49 123 456789" autocomplete="tel">
+                
+                <label for="birthdate">
+                    Geburtsdatum:
+                </label>
+                <input type="date" id="birthdate" name="birthdate" 
+                       min="1924-01-01" max="2006-12-31">
+            </fieldset>
+
+            <!-- Firmeninformationen -->
+            <fieldset>
+                <legend>2. Firmeninformationen</legend>
+                
+                <label for="company">
+                    Firma/Organisation:
+                </label>
+                <input type="text" id="company" name="company" 
+                       placeholder="TechCorp GmbH" autocomplete="organization">
+                
+                <label for="position">
+                    Position/Rolle:
+                </label>
+                <input type="text" id="position" name="position" 
+                       placeholder="Senior Developer" autocomplete="organization-title">
+                
+                <label for="website">
+                    Firmen-Website:
+                </label>
+                <input type="url" id="website" name="website" 
+                       placeholder="https://www.example.com">
+                
+                <label for="employees">
+                    Unternehmensgröße:
+                </label>
+                <select id="employees" name="employees">
+                    <option value="">Bitte wählen</option>
+                    <optgroup label="Klein">
+                        <option value="1-10">1-10 Mitarbeiter</option>
+                        <option value="11-50">11-50 Mitarbeiter</option>
+                    </optgroup>
+                    <optgroup label="Mittel">
+                        <option value="51-250">51-250 Mitarbeiter</option>
+                        <option value="251-1000">251-1000 Mitarbeiter</option>
+                    </optgroup>
+                    <optgroup label="Groß">
+                        <option value="1000+">Über 1000 Mitarbeiter</option>
+                    </optgroup>
+                </select>
+            </fieldset>
+
+            <!-- Workshop-Auswahl -->
+            <fieldset>
+                <legend>3. Workshop-Auswahl</legend>
+                
+                <p><strong>Bitte wählen Sie Ihre gewünschten Workshops:</strong></p>
+                
+                <div class="workshop-grid">
+                    <div class="checkbox-group">
+                        <h4>Vormittags (09:00 - 12:00)</h4>
+                        <label>
+                            <input type="checkbox" name="workshop_morning" value="ai_basics">
+                            KI-Grundlagen
+                        </label>
+                        <label>
+                            <input type="checkbox" name="workshop_morning" value="cloud_architecture">
+                            Cloud-Architektur
+                        </label>
+                        <label>
+                            <input type="checkbox" name="workshop_morning" value="security">
+                            Cybersecurity
+                        </label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <h4>Nachmittags (14:00 - 17:00)</h4>
+                        <label>
+                            <input type="checkbox" name="workshop_afternoon" value="blockchain">
+                            Blockchain-Technologie
+                        </label>
+                        <label>
+                            <input type="checkbox" name="workshop_afternoon" value="iot">
+                            Internet of Things
+                        </label>
+                        <label>
+                            <input type="checkbox" name="workshop_afternoon" value="quantum">
+                            Quantum Computing
+                        </label>
+                    </div>
+                </div>
+                
+                <details>
+                    <summary>Workshop-Beschreibungen anzeigen</summary>
+                    <ul>
+                        <li><strong>KI-Grundlagen:</strong> Einführung in Machine Learning und Neural Networks</li>
+                        <li><strong>Cloud-Architektur:</strong> Best Practices für skalierbare Cloud-Lösungen</li>
+                        <li><strong>Cybersecurity:</strong> Moderne Bedrohungen und Schutzmaßnahmen</li>
+                </ul>
+            </details>
+                        <div class="form-buttons">
+                            <button type="submit">Anmelden</button>
+                            <button type="reset">Zurücksetzen</button>
+
+                        </div>
+</body>
+</html>
+
