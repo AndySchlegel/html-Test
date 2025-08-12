@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andy’s Technik Börse</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --brand:#0d6efd;
+      --brand-2:#6f42c1;
+      --bg:#0a0f1a;
+      --card:#0f1628;
+      --card-2:#0c1221;
+      --text:#e9eef7;         /* Primärtext */
+      --text-2:#cfd9ea;       /* Sekundärtext (heller gemacht) */
+      --muted:#b7c4d8;        /* Muted (deutlich heller) */
+      --product-img-h:240px;  /* einheitliche Höhe */
+    }
+
+    html{scroll-behavior:smooth}
+    body{padding-top:76px; background:var(--bg); color:var(--text)}
+
+    /* ===== Navbar ===== */
+    .navbar{backdrop-filter:saturate(120%) blur(8px); background:rgba(10,15,26,.65)!important; border-bottom:1px solid rgba(255,255,255,.08)}
+    .navbar-brand{letter-spacing:.5px}
+    .nav-link{position:relative}
+    .nav-link::after{content:"";position:absolute;left:.5rem;right:.5rem;bottom:.3rem;height:2px;background:linear-gradient(90deg,var(--brand),var(--brand-2));transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+    .nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+
+    /* ===== Hero / Cover ===== */
+    .hero{position:relative;min-height:72vh;display:grid;place-items:center;background:url("https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop") center/cover fixed no-repeat;border-bottom:1px solid rgba(255,255,255,.08);isolation:isolate}
+    .hero::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(80% 60% at 50% 40%,rgba(13,110,253,.35),transparent 60%),linear-gradient(to bottom,rgba(10,15,26,.5),rgba(10,15,26,.9))}
+    .hero .content{position:relative;z-index:1;text-align:center;max-width:1000px;padding:4rem 1rem}
+    .hero h1{font-weight:800;letter-spacing:.6px}
+    .hero .lead{color:var(--text-2)}
+    .hero .badges .badge{background:linear-gradient(90deg,var(--brand),var(--brand-2));}
+
+    /* ===== Product Cards ===== */
+    .product-card{background:var(--card);border:1px solid rgba(255,255,255,.07)}
+    .product-card .product-img-wrapper{height:var(--product-img-h)!important;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--card-2);border-top-left-radius:.5rem;border-top-right-radius:.5rem}
+    .product-card .product-img{width:100%!important;height:100%!important;object-fit:contain;max-width:none!important;max-height:none!important;display:block;transition:transform .35s ease;will-change:transform}
+    .product-card:hover .product-img{transform:scale(1.06)}
+    .product-card:hover{box-shadow:0 .75rem 2rem rgba(0,0,0,.35);transform:translateY(-2px);transition:all .25s ease}
+    .product-card h3,.product-card .h5{color:var(--text)!important}
+    .product-card .muted{color:var(--muted)!important}
+    .price{font-weight:800;letter-spacing:.5px;color:#69a9ff}
+    .price small{color:#96a6bf}
+    .badge-angle{position:absolute;top:.75rem;left:.75rem}
+
+    /* ===== Section Headings ===== */
+    .section-head{margin-bottom:1.25rem}
+    .section-head h2{font-weight:700}
+    .muted{color:var(--muted)}
+
+    /* ===== Marketing Strips ===== */
+    .strip{background:linear-gradient(90deg,rgba(13,110,253,.15),rgba(111,66,193,.15));border:1px solid rgba(255,255,255,.08);border-radius:1rem}
+
+    /* ===== Footer ===== */
+    footer{background:#0b1222;border-top:1px solid rgba(255,255,255,.08)}
+
+    /* ===== Dark Forms / Modal (Kontrast-Fix) ===== */
+    .form-label{color:var(--text)!important}
+    .form-control{background:var(--card-2)!important;color:var(--text)!important;border:1px solid rgba(255,255,255,.2)!important}
+    .form-control::placeholder{color:#9fb0c7!important}
+    .form-control:focus{border-color:var(--brand)!important;box-shadow:0 0 0 .25rem rgba(13,110,253,.25)!important}
+    .form-check-label{color:var(--text)!important}
+    .form-check-input{background-color:var(--card-2);border-color:rgba(255,255,255,.35)}
+    .form-check-input:checked{background-color:var(--brand);border-color:var(--brand)}
+
+    .modal-content{background:var(--card)!important;color:var(--text)!important;border:1px solid rgba(255,255,255,.08)!important}
+    .modal-header,.modal-footer{border-color:rgba(255,255,255,.08)!important}
+    .btn-close{filter:invert(1) grayscale(1);opacity:.9}
+
+    /* Responsiv */
+    @media (max-width: 576px){:root{--product-img-h:180px}}
+  </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#mainNav" tabindex="0" id="home">
+  <!-- ================= NAVBAR ================= -->
+  <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+        <i class="bi bi-cpu"></i>
+        <span class="fw-bold">Andy’s Technik Börse</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Navigation umschalten">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto me-lg-3">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#angebote">Angebote</a></li>
+          <li class="nav-item"><a class="nav-link" href="#produkte">Produkte</a></li>
+          <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control form-control-sm me-2" type="search" placeholder="Suchen…" aria-label="Search">
+          <button class="btn btn-outline-light btn-sm" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO / COVER ================= -->
+  <header class="hero">
+    <div class="content">
+      <div class="badges mb-3 d-flex justify-content-center gap-2 flex-wrap">
+        <span class="badge rounded-pill px-3 py-2">Neu & sofort lieferbar</span>
+        <span class="badge rounded-pill px-3 py-2">30 Tage Rückgabe</span>
+        <span class="badge rounded-pill px-3 py-2">Gratis Versand ab 49€</span>
+      </div>
+      <h1 class="display-4 mb-3">Dein Upgrade beginnt hier.</h1>
+      <p class="lead mb-4">Premium‑Technik zu Börsenpreisen – fair, schnell, zuverlässig. Entdecke Top‑Deals für Smartphones, Laptops, Audio & mehr.</p>
+      <div class="d-flex gap-3 justify-content-center">
+        <a href="#produkte" class="btn btn-primary btn-lg"><i class="bi bi-bag"></i> Jetzt shoppen</a>
+        <a href="#angebote" class="btn btn-outline-light btn-lg"><i class="bi bi-lightning-charge"></i> Blitz‑Angebote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= ANGEBOTE STRIP ================= -->
+  <section id="angebote" class="container py-5">
+    <div class="strip p-4 p-md-5 text-center">
+      <h2 class="mb-2">🔥 Wochen‑Knaller: Bis zu <span class="text-info">−35%</span> auf ausgewählte Highlights</h2>
+      <p class="muted m-0">„Mehr Leistung. Weniger zahlen. Technik, die dich voran bringt.“</p>
+    </div>
+  </section>
+
+  <!-- ================= PRODUKTE ================= -->
+  <section id="produkte" class="container pb-5">
+    <div class="section-head text-center">
+      <h2>Unsere Bestseller</h2>
+      <p class="muted">Beliebt bei Tech‑Fans – kuratiert von Andy</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Produkt 1 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card product-card h-100 shadow-sm position-relative">
+          <span class="badge bg-danger badge-angle">Sale</span>
+          <div class="product-img-wrapper">
+            <img class="product-img" src="../images/Smartphone Pro X.jpeg" alt="Smartphone Pro X" loading="lazy">
+          </div>
+          <div class="card-body text-center d-flex flex-column">
+            <h3 class="h5 mb-1">Smartphone Pro X</h3>
+            <p class="muted mb-3">48h Akku • Pro‑Kamera • 5G Turbo</p>
+            <p class="price fs-4 mb-3">699€ <small class="text-decoration-line-through">799€</small></p>
+            <button class="btn btn-primary mt-auto btn-buy" data-bs-toggle="modal" data-bs-target="#buyModal" data-product="Smartphone Pro X" data-price="699€"><i class="bi bi-cart-plus"></i> Kaufen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produkt 2 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card product-card h-100 shadow-sm position-relative">
+          <span class="badge bg-info badge-angle">Neu</span>
+          <div class="product-img-wrapper">
+            <img class="product-img" src="../images/Laptop Ultra 15.jpeg" alt="Laptop Ultra 15&quot;" loading="lazy">
+          </div>
+          <div class="card-body text-center d-flex flex-column">
+            <h3 class="h5 mb-1">Laptop Ultra 15&quot;</h3>
+            <p class="muted mb-3">Intel® i7 • 16GB RAM • 1TB SSD</p>
+            <p class="price fs-4 mb-3">1.199€</p>
+            <button class="btn btn-primary mt-auto btn-buy" data-bs-toggle="modal" data-bs-target="#buyModal" data-product="Laptop Ultra 15&quot;" data-price="1.199€"><i class="bi bi-cart-plus"></i> Kaufen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produkt 3 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card product-card h-100 shadow-sm position-relative">
+          <div class="product-img-wrapper">
+            <img class="product-img" src="../images/Kopfhoerer Elite.jpeg" alt="Kopfhörer Elite" loading="lazy">
+          </div>
+          <div class="card-body text-center d-flex flex-column">
+            <h3 class="h5 mb-1">Kopfhörer Elite</h3>
+            <p class="muted mb-3">ANC • Hi‑Res Audio • Komfortpolster</p>
+            <p class="price fs-4 mb-3">249€</p>
+            <button class="btn btn-primary mt-auto btn-buy" data-bs-toggle="modal" data-bs-target="#buyModal" data-product="Kopfhörer Elite" data-price="249€"><i class="bi bi-cart-plus"></i> Kaufen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produkt 4 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card product-card h-100 shadow-sm position-relative">
+          <div class="product-img-wrapper">
+            <img class="product-img" src="../images/4K Action Cam.jpg" alt="4K Action Cam" loading="lazy">
+          </div>
+          <div class="card-body text-center d-flex flex-column">
+            <h3 class="h5 mb-1">4K Action Cam</h3>
+            <p class="muted mb-3">Wasserdicht • 120fps • Super‑Stabil</p>
+            <p class="price fs-4 mb-3">179€</p>
+            <button class="btn btn-primary mt-auto btn-buy" data-bs-toggle="modal" data-bs-target="#buyModal" data-product="4K Action Cam" data-price="179€"><i class="bi bi-cart-plus"></i> Kaufen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produkt 5 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card product-card h-100 shadow-sm position-relative">
+          <span class="badge bg-success badge-angle">Bestseller</span>
+          <div class="product-img-wrapper">
+            <img class="product-img" src="../images/Gaming Monitor 27.jpeg" alt="Gaming Monitor 27&quot;" loading="lazy">
+          </div>
+          <div class="card-body text-center d-flex flex-column">
+            <h3 class="h5 mb-1">Gaming Monitor 27&quot;</h3>
+            <p class="muted mb-3">165Hz • 1ms • HDR‑Ready</p>
+            <p class="price fs-4 mb-3">329€</p>
+            <button class="btn btn-primary mt-auto btn-buy" data-bs-toggle="modal" data-bs-target="#buyModal" data-product="Gaming Monitor 27&quot;" data-price="329€"><i class="bi bi-cart-plus"></i> Kaufen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produkt 6 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card product-card h-100 shadow-sm position-relative">
+          <div class="product-img-wrapper">
+            <img class="product-img" src="../images/Smartwatch.jpg" alt="Smartwatch Pulse" loading="lazy">
+          </div>
+          <div class="card-body text-center d-flex flex-column">
+            <h3 class="h5 mb-1">Smartwatch Pulse</h3>
+            <p class="muted mb-3">EKG • GPS • 7 Tage Laufzeit</p>
+            <p class="price fs-4 mb-3">199€</p>
+            <button class="btn btn-primary mt-auto btn-buy" data-bs-toggle="modal" data-bs-target="#buyModal" data-product="Smartwatch Pulse" data-price="199€"><i class="bi bi-cart-plus"></i> Kaufen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRUST / USP ================= -->
+  <section class="container pb-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="strip p-4 h-100 text-center">
+          <i class="bi bi-truck display-6"></i>
+          <h3 class="h5 mt-2 mb-1">Schneller Versand</h3>
+          <p class="muted m-0">Heute bestellt, morgen da* – mit Sendungsverfolgung.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="strip p-4 h-100 text-center">
+          <i class="bi bi-shield-check display-6"></i>
+          <h3 class="h5 mt-2 mb-1">2 Jahre Garantie</h3>
+          <p class="muted m-0">Sorglos einkaufen dank geprüfter Qualität.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="strip p-4 h-100 text-center">
+          <i class="bi bi-arrow-repeat display-6"></i>
+          <h3 class="h5 mt-2 mb-1">Einfache Rückgabe</h3>
+          <p class="muted m-0">30 Tage testen. Ohne Wenn und Aber.</p>
+        </div>
+      </div>
+    </div>
+    <p class="muted small mt-2">* Innerhalb DE bei lagernden Artikeln.</p>
+  </section>
+
+  <!-- ================= KONTAKT ================= -->
+  <section id="kontakt" class="container pb-5">
+    <div class="section-head text-center">
+      <h2>Kontakt</h2>
+      <p class="muted">Fragen? Wir sind fix für dich da.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card product-card">
+          <div class="card-body p-4">
+            <form id="contactForm" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="vorname">Vorname</label>
+                  <input class="form-control" id="vorname" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="nachname">Nachname</label>
+                  <input class="form-control" id="nachname" required />
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="email">E‑Mail</label>
+                  <input class="form-control" id="email" type="email" required />
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="nachricht">Nachricht</label>
+                  <textarea class="form-control" id="nachricht" rows="4" required></textarea>
+                </div>
+              </div>
+              <div class="text-center mt-4">
+                <button class="btn btn-primary btn-lg" type="submit"><i class="bi bi-send"></i> Abschicken</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="py-4">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      <small class="muted">© <span id="year"></span> Andy’s Technik Börse</small>
+      <div class="d-flex align-items-center gap-3">
+        <a class="text-decoration-none text-light" href="#home">Nach oben</a>
+        <span class="muted">•</span>
+        <a class="text-decoration-none text-light" href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= BUY MODAL ================= -->
+  <div class="modal fade" id="buyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="buyModalLabel">Bestellung</h5>
+          <button class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">Du bestellst: <strong id="modalProduct">–</strong> <span class="muted">(<span id="modalPrice">–</span>)</span></p>
+          <form id="buyForm">
+            <div class="mb-3">
+              <label class="form-label" for="bemail">E‑Mail</label>
+              <input id="bemail" class="form-control" type="email" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="bqty">Anzahl</label>
+              <input id="bqty" class="form-control" type="number" min="1" value="1" required />
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="bagb" required />
+              <label class="form-check-label" for="bagb">Ich akzeptiere die AGB.</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Abbrechen</button>
+          <button id="btnOrder" class="btn btn-primary">Bestellung abschicken</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080">
+    <div id="toast" class="toast text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000" data-bs-autohide="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastText">Aktion erfolgreich.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Jahr im Footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Modal: Produktdaten übernehmen
+    const buyModalEl = document.getElementById('buyModal');
+    const modalProduct = document.getElementById('modalProduct');
+    const modalPrice = document.getElementById('modalPrice');
+
+    buyModalEl.addEventListener('show.bs.modal', (e) => {
+      const btn = e.relatedTarget;
+      const product = btn?.getAttribute('data-product') || 'Produkt';
+      const price = btn?.getAttribute('data-price') || '';
+      modalProduct.textContent = product;
+      modalPrice.textContent = price;
+      document.getElementById('buyModalLabel').textContent = 'Bestellung – ' + product;
+    });
+
+    // Toast Setup
+    const toast = new bootstrap.Toast(document.getElementById('toast'));
+
+    // Bestellung abschicken
+    document.getElementById('btnOrder').addEventListener('click', () => {
+      const form = document.getElementById('buyForm');
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+      const qty = document.getElementById('bqty').value;
+      const product = modalProduct.textContent;
+      buyModalEl.querySelector('.btn-close').click();
+      document.getElementById('toastText').textContent = `✅ Bestellung erfolgreich: ${qty}× ${product} unterwegs!`;
+      toast.show();
+      form.reset();
+    });
+
+    // Kontaktformular -> Toast
+    document.getElementById('contactForm').addEventListener('submit', (e) =>{
+      e.preventDefault();
+      document.getElementById('toastText').textContent = '📨 Danke! Wir melden uns zeitnah.';
+      toast.show();
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
