@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MeinShop – Deine erste Bootstrap-Webseite</title>
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* weiches Scrollen zu Ankern */
+        .product-icon {
+            height: 160px;
+        }
+
+        footer {
+            background: #0d6efd;
+            color: #fff;
+        }
+
+        body {
+            padding-top: 70px;
+            /* Höhe der Navbar ausgleichen */
+        }
+    </style>
+</head>
+
+<body id="home">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">🛍️ MeinShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produkte">Produkte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="container">
+        <div class="text-center py-5 my-4">
+            <h1 class="display-4 fw-bold text-primary">Willkommen bei MeinShop</h1>
+            <p class="lead text-muted">Entdecke hochwertige Technik zu fairen Preisen – schnell, einfach, zuverlässig.
+            </p>
+            <a href="#produkte" class="btn btn-primary btn-lg mt-2">Jetzt einkaufen</a>
+        </div>
+    </header>
+
+    <!-- PRODUKTE -->
+    <section id="produkte" class="container mb-5">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-semibold">Unsere Produkte</h2>
+            <p class="text-muted mb-0">Top-Auswahl, sofort lieferbar</p>
+        </div>
+
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-img-top bg-primary d-flex align-items-center justify-content-center product-icon">
+                        <span class="text-white fs-1">📱</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Smartphone Pro</h5>
+                        <p class="card-text">Starke Performance und brillante Kamera.</p>
+                        <p class="text-primary fw-bold fs-5 mb-3">899€</p>
+                        <a href="#kontakt" class="btn btn-primary">Kaufen</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-img-top bg-success d-flex align-items-center justify-content-center product-icon">
+                        <span class="text-white fs-1">💻</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Laptop Ultra</h5>
+                        <p class="card-text">Perfekt für Arbeit, Studium und Gaming.</p>
+                        <p class="text-primary fw-bold fs-5 mb-3">1299€</p>
+                        <a href="#kontakt" class="btn btn-primary">Kaufen</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-img-top bg-warning d-flex align-items-center justify-content-center product-icon">
+                        <span class="text-white fs-1">🎧</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Kopfhörer Elite</h5>
+                        <p class="card-text">Noise-Cancelling mit sattem Premium-Sound.</p>
+                        <p class="text-primary fw-bold fs-5 mb-3">299€</p>
+                        <a href="#kontakt" class="btn btn-primary">Kaufen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-4">
+                    <h2 class="fw-semibold">Kontakt</h2>
+                    <p class="text-muted m-0">Fragen? Schreib uns – wir antworten schnell!</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-body p-4">
+                        <form onsubmit="event.preventDefault(); alert('Danke! Wir melden uns.');">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="vorname" class="form-label">Vorname</label>
+                                    <input type="text" class="form-control" id="vorname" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nachname" class="form-label">Nachname</label>
+                                    <input type="text" class="form-control" id="nachname" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E‑Mail</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="betreff" class="form-label">Betreff</label>
+                                <select id="betreff" class="form-select">
+                                    <option>Allgemeine Anfrage</option>
+                                    <option>Produktsupport</option>
+                                    <option>Bestellung</option>
+                                    <option>Sonstiges</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nachricht" class="form-label">Nachricht</label>
+                                <textarea id="nachricht" class="form-control" rows="4" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Nachricht senden</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-4 mt-auto">
+        <div class="container text-center">
+            <small>© <span id="year"></span> MeinShop • Mit Bootstrap gebaut</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS (Bundle inkl. Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // aktuelles Jahr im Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

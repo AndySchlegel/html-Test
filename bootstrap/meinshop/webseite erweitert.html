@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MeinShop – Deine erste Bootstrap-Webseite</title>
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .product-icon {
+            height: 160px;
+        }
+
+        footer {
+            background: #0d6efd;
+            color: #fff;
+        }
+
+        body {
+            padding-top: 70px;
+            /* Höhe der Navbar ausgleichen */
+        }
+
+        ƒ
+    </style>
+</head>
+
+<body id="home">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">🛍️ MeinShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produkte">Produkte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="container">
+        <div class="text-center py-5 my-4">
+            <h1 class="display-4 fw-bold text-primary">Willkommen bei MeinShop</h1>
+            <p class="lead text-muted">Entdecke hochwertige Technik zu fairen Preisen – schnell, einfach, zuverlässig.
+            </p>
+            <a href="#produkte" class="btn btn-primary btn-lg mt-2">Jetzt einkaufen</a>
+        </div>
+    </header>
+
+    <!-- PRODUKTE -->
+    <section id="produkte" class="container mb-5">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-semibold">Unsere Produkte</h2>
+            <p class="text-muted mb-0">Top-Auswahl, sofort lieferbar</p>
+        </div>
+
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-img-top bg-primary d-flex align-items-center justify-content-center product-icon">
+                        <span class="text-white fs-1">📱</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Smartphone Pro</h5>
+                        <p class="card-text">Starke Performance und brillante Kamera.</p>
+                        <p class="text-primary fw-bold fs-5 mb-3">899€</p>
+                        <!-- BONUS: Button öffnet Modal und übergibt den Produktnamen -->
+                        <button class="btn btn-primary btn-buy" data-bs-toggle="modal" data-bs-target="#kaufModal"
+                            data-product="Smartphone Pro">
+                            Kaufen
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-img-top bg-success d-flex align-items-center justify-content-center product-icon">
+                        <span class="text-white fs-1">💻</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Laptop Ultra</h5>
+                        <p class="card-text">Perfekt für Arbeit, Studium und Gaming.</p>
+                        <p class="text-primary fw-bold fs-5 mb-3">1299€</p>
+                        <!-- BONUS -->
+                        <button class="btn btn-primary btn-buy" data-bs-toggle="modal" data-bs-target="#kaufModal"
+                            data-product="Laptop Ultra">
+                            Kaufen
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-img-top bg-warning d-flex align-items-center justify-content-center product-icon">
+                        <span class="text-white fs-1">🎧</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Kopfhörer Elite</h5>
+                        <p class="card-text">Noise-Cancelling mit sattem Premium-Sound.</p>
+                        <p class="text-primary fw-bold fs-5 mb-3">299€</p>
+                        <!-- BONUS -->
+                        <button class="btn btn-primary btn-buy" data-bs-toggle="modal" data-bs-target="#kaufModal"
+                            data-product="Kopfhörer Elite">
+                            Kaufen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BONUS: MODAL (Bestell-Dialog) -->
+    <div class="modal fade" id="kaufModal" tabindex="-1" aria-labelledby="kaufModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- Titel füllen wir dynamisch -->
+                    <h5 class="modal-title" id="kaufModalLabel">Bestellung</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Du bestellst: <strong id="modalProductName">–</strong></p>
+                    <form id="kaufForm">
+                        <div class="mb-3">
+                            <label for="kaufEmail" class="form-label">E‑Mail</label>
+                            <input type="email" class="form-control" id="kaufEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kaufAnzahl" class="form-label">Anzahl</label>
+                            <input type="number" class="form-control" id="kaufAnzahl" min="1" value="1" required>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="kaufAGB" required>
+                            <label class="form-check-label" for="kaufAGB">
+                                Ich akzeptiere die AGB.
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!-- data-bs-dismiss schließt das Modal ohne JS -->
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                    <!-- Kein submit, wir fangen Klick im JS ab -->
+                    <button type="button" id="btnBestellen" class="btn btn-primary">Bestellung abschicken</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-4">
+                    <h2 class="fw-semibold">Kontakt</h2>
+                    <p class="text-muted m-0">Fragen? Schreib uns – wir antworten schnell!</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-body p-4">
+                        <form id="kontaktForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="vorname" class="form-label">Vorname</label>
+                                    <input type="text" class="form-control" id="vorname" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nachname" class="form-label">Nachname</label>
+                                    <input type="text" class="form-control" id="nachname" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E‑Mail</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="betreff" class="form-label">Betreff</label>
+                                <select id="betreff" class="form-select">
+                                    <option>Allgemeine Anfrage</option>
+                                    <option>Produktsupport</option>
+                                    <option>Bestellung</option>
+                                    <option>Sonstiges</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nachricht" class="form-label">Nachricht</label>
+                                <textarea id="nachricht" class="form-control" rows="4" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <!-- Kein alert mehr – wir nutzen Toast -->
+                                <button type="submit" class="btn btn-primary btn-lg">Nachricht senden</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-4 mt-auto">
+        <div class="container text-center">
+            <small>© <span id="year"></span> MeinShop • Mit Bootstrap gebaut</small>
+        </div>
+    </footer>
+
+    <!-- BONUS: TOAST Container (unten rechts) -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080">
+        <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert"
+            aria-live="assertive" aria-atomic="true" data-bs-delay="3000" data-bs-autohide="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastText">
+                    ✅ Aktion erfolgreich.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Schließen"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Bundle inkl. Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // aktuelles Jahr im Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- BONUS: Modal-Logik ---
+        const kaufModalEl = document.getElementById('kaufModal');
+        const modalProductNameEl = document.getElementById('modalProductName');
+        const kaufModal = new bootstrap.Modal(kaufModalEl);
+
+        // Beim Öffnen des Modals den Produktnamen aus dem geklickten Button einsetzen
+        kaufModalEl.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget; // der Button, der das Modal öffnet
+            const product = button?.getAttribute('data-product') || 'Produkt';
+            modalProductNameEl.textContent = product;
+            document.getElementById('kaufModalLabel').textContent = 'Bestellung – ' + product;
+        });
+
+        // --- BONUS: Toast-Setup ---
+        const successToastEl = document.getElementById('successToast');
+        const successToast = new bootstrap.Toast(successToastEl);
+        const toastText = document.getElementById('toastText');
+
+        // Klick auf "Bestellung abschicken"
+        document.getElementById('btnBestellen').addEventListener('click', () => {
+            // einfache Validierung des Modal-Formulars
+            const email = document.getElementById('kaufEmail');
+            const anzahl = document.getElementById('kaufAnzahl');
+            const agb = document.getElementById('kaufAGB');
+
+            if (!email.checkValidity() || !anzahl.checkValidity() || !agb.checked) {
+                // Falls etwas fehlt, nutzt der Browser die eingebauten Validierungs-Hinweise
+                document.getElementById('kaufForm').reportValidity();
+                return;
+            }
+
+            // Modal schließen + Toast zeigen
+            kaufModal.hide();
+            toastText.textContent = '✅ Bestellung erfolgreich: ' + modalProductNameEl.textContent + ' wurde in Auftrag gegeben.';
+            successToast.show();
+
+            // Formular zurücksetzen
+            document.getElementById('kaufForm').reset();
+        });
+
+        // Kontaktformular: Toast statt Seiten-Reload
+        document.getElementById('kontaktForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            toastText.textContent = '📨 Danke! Wir melden uns zeitnah.';
+            successToast.show();
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>
